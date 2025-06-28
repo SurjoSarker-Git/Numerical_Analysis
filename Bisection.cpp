@@ -34,8 +34,10 @@ double Bisection(double a, double b)
         }
 
         else
-        a=c;
-
+        {
+            a=c;
+        }
+        error=abs(a-b);
         it++;
     }
 
@@ -45,11 +47,42 @@ double Bisection(double a, double b)
 }
 
 
-double traditional()
+void traditional()
 {
-    double a,b;
-    cin>>a>>b;
+    double a=0,b=5;
     double root=Bisection(a,b);
-    return root;
+    cout<<"Root in traditional approach is: "<<root<<endl;
+}
+
+void scan()
+{
+    double a=LLONG_MIN;
+    double b=LLONG_MIN;
+    
+    for(double x=0;x<=10;x+=0.01)
+    {
+        if(f(x)*f(x+0.01)<0)
+        {
+            a=x;
+            b=x+0.01;
+            break;
+        }
+    }
+
+    if(a!=LLONG_MIN&&b!=LLONG_MIN)
+    {
+        double Root=Bisection(a,b);
+        cout<<"Root in Automated Approach is: "<<Root<<endl;
+    }
+    else
+    {
+        cout<<"Root is not in this range"<<endl;
+    }
+}
+
+int main()
+{
+    traditional();
+    scan();
 }
 
